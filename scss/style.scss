@@ -308,13 +308,9 @@ body {
       max-height: 310px;
       margin-left: 10px;
       h2 {
+        @include h2;
         margin: 0;
-        font-size: 36px;
-        font-family: $Source;
-        font-weight: bold;
-        letter-spacing: 5px;
         color: $dark-gray;
-        text-transform: uppercase;
         &::before {
           content: '';
           border-left: 6px solid $red;
@@ -322,15 +318,11 @@ body {
         }
       }
       p {
-        margin: 45px 0 0;
-        font-size: 14px;
-        font-family: $Source;
-        font-weight: normal;
-        line-height: 25px;
-        color: $darkest-gray2;
+        @include p-Source;
+        margin: 35px 0 0;
       }
       .about_btn {
-        margin-top: 45px;
+        margin-top: 35px;
         width: 225px;
         height: 55px;
         background-color: $red;
@@ -360,18 +352,14 @@ body {
     position: relative;
     .service_content {
       margin: 0 80px 0 0;
-      padding-top: 140px;
+      padding-top: 130px;
       padding-right: 0;
       width: 595px;
       text-align: end;
       h2 {
+        @include h2;
         margin: 0;
-        font-size: 36px;
-        font-family: $Source;
-        font-weight: bold;
-        letter-spacing: 5px;
         color: $light-gray;
-        text-transform: uppercase;
         &::after {
           content: '';
           border-right: 6px solid $red;
@@ -391,12 +379,8 @@ body {
             margin: 0 0 20px;
           }
           p {
+            @include p-Source;
             margin: 0;
-            font-size: 14px;
-            font-family: $Source;
-            font-weight: normal;
-            line-height: 25px;
-            color: $darkest-gray2;
           }
         }
         .icon_service {
@@ -458,6 +442,9 @@ body {
           margin: 10px 0 10px 50px;
           width: 1px;
           height: 35px;
+          button {
+            display: none;
+          }
         }
         .slick-active {
           background-color: $red;
@@ -472,19 +459,11 @@ body {
   padding-top: 140px;
   text-align: center;
   h2 {
-    margin: 0 10px 30px;
-    font-family: $Source;
-    font-weight: bold;
-    font-size: 36px;
-    letter-spacing: 3px;
+    @include h2;
     color: $dark-gray;
-    text-transform: uppercase;
   }
   p {
-    margin: 0 10px 30px;
-    font-family: $Open;
-    font-size: 14px;
-    color: $darkest-gray2;
+    @include p-Open;
   }
   .ball {
     margin-bottom: 65px;
@@ -496,7 +475,7 @@ body {
   .portfolio_nav {
     list-style: none;
     @include flex(center, flex-start);
-    margin: 0 0 50px;
+    margin: 0;
     padding: 0;
     li {
       a {
@@ -518,17 +497,508 @@ body {
       }
     }
   }
+
+  //  Сделать анимацию появления текста на картинке
   .work_gallery {
+    margin: 50px 0 0 0;
     max-width: 100%;
     @include flex(flex-start, flex-start);
-    .trip_img {
+    .work_item {
       width: 480px;
       height: 480px;
-      margin: 0;
-      padding: 0;
+      overflow: hidden;
+      position: relative;
+      transition: 0.5s;
+      .item_img {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        .mask {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background-color: $red;
+          opacity: 0.75;
+          transition: 0.5s;
+        }
+        .item_text {
+          position: absolute;
+          bottom: -100%;
+          left: 0;
+          z-index: 1;
+          margin: 0 0 50px 50px;
+          text-align: left;
+          transition: 1s;
+          span {
+            display: block;
+            width: 45px;
+            height: 4px;
+            background-color: $white;
+          }
+          h3 {
+            font-family: $Source;
+            font-weight: 600;
+            font-size: 24px;
+            text-transform: uppercase;
+            color: $white;
+            margin: 30px 0 15px 0;
+          }
+          p {
+            font-family: $Open;
+            font-size: 14px;
+            color: $white;
+            margin: 0;
+          }
+        }
+      }
+      &:hover .mask {
+        left: 0;
+      }
+      &:hover .item_text {
+        bottom: 0;
+      }
+    }
+  }
+
+  .case_study {
+    background-color: $light-gray;
+    padding-top: 140px;
+    height: 1190px;
+    .study_content {
+      h2 {
+        @include h2;
+        color: $dark-gray;
+      }
+      p {
+        @include p-Open;
+      }
+    }
+    .work_slider {
+      @include flex(flex-start, center);
+      position: relative;
+      margin-top: 115px;
+      .text_block {
+        margin: 0;
+        z-index: 1;
+        padding-top: 80px;
+        width: 665px;
+        height: 630px;
+        background-color: $white;
+        box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
+        .text_content {
+          width: 100%;
+          height: 100%;
+          .icon_block {
+            width: 90px;
+            height: 90px;
+            background-color: $red;
+            transform: rotate(45deg);
+            @include flex(center, center);
+            border-radius: 3px;
+            margin: 20px auto;
+            i {
+              transform: rotate(-45deg);
+              font-size: 35px;
+              color: $light-gray;
+            }
+          }
+          h3 {
+            font-family: $Open;
+            font-weight: 600;
+            font-size: 18px;
+            text-transform: uppercase;
+            color: $dark-gray;
+            margin: 55px 0 0;
+          }
+          span {
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: $dark-gray;
+            margin: 30px auto 25px;
+          }
+          p {
+            font-family: $Source;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 24px;
+            color: $darkest-gray2;
+            width: 550px;
+            margin: 0 auto;
+          }
+          button {
+            margin: 50px 0;
+            width: 145px;
+            height: 45px;
+            border-radius: 3px;
+            background-color: $red;
+            color: $white;
+            font-size: 12px;
+            font-family: $Open;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+            outline: none;
+          }
+        }
+        .slick-dots {
+          margin: 50px 0;
+          bottom: 0;
+          li {
+            background-color: $light-gray;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 8px 0 0;
+            button {
+              display: none;
+            }
+          }
+          .slick-active {
+            background-color: $red;
+          }
+        }
+      }
+      .image_block {
+        width: 585px;
+        height: 764px;
+        position: absolute;
+        top: calc(50% - 362px);
+        right: 0;
+      }
+    }
+  }
+
+  .progress {
+    max-width: $width;
+    height: 510px;
+    position: relative;
+    .bg_progress {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .progress_content {
+      text-align: center;
+      @include flex(space-between, center);
+      padding-top: 150px;
+      color: $light-gray;
+      .progress_item {
+        .icon_block {
+          width: 110px;
+          height: 110px;
+          border: 1px solid $light-gray;
+          border-radius: 50%;
+          @include flex(center, center);
+          font-size: 31px;
+          margin: 0 auto;
+        }
+        h3 {
+          margin: 50px 0 15px;
+          font-size: 30px;
+          font-family: $Source;
+          font-weight: 700;
+          line-height: 30px;
+        }
+        p {
+          font-size: 18px;
+          font-family: $Source;
+          margin: 0;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}
+
+.wrap_price {
+  max-width: $width;
+  padding-top: 155px;
+  text-align: center;
+  .price_content {
+    h2 {
+      @include h2;
+      color: $dark-gray;
+    }
+    p {
+      @include p-Open;
+    }
+    .ball {
+      margin: 0 auto;
+      &::before,
+      &::after {
+        background-color: $darkest-gray2;
+      }
+    }
+  }
+  .price_blocks {
+    padding: 65px 0 140px;
+    @include flex(space-between, center);
+    .price_item {
+      width: 380px;
+      height: 610px;
+      .price_name {
+        height: 205px;
+        background-color: $darkest-gray2;
+        position: relative;
+        transition: 0.5s;
+        h4 {
+          font-size: 24px;
+          font-family: $Open;
+          font-weight: 600;
+          color: $white;
+          text-transform: uppercase;
+          margin: 0;
+          padding-top: 50px;
+        }
+        .price_number {
+          position: absolute;
+          bottom: -77.5px;
+          left: 0;
+          right: 0;
+          z-index: 1;
+          @include flex(center, center);
+          flex-direction: column;
+          width: 155px;
+          height: 155px;
+          border-radius: 50%;
+          background-color: $white;
+          margin: 0 auto;
+          animation: pulse 2s infinite;
+          @keyframes pulse {
+            0% {
+              box-shadow: 0 0 0 0 rgba(190, 190, 190, 1);
+            }
+            70% {
+              box-shadow: 0 0 0 12px rgba(190, 190, 190, 0);
+            }
+            100% {
+              box-shadow: 0 0 0 0 rgba(190, 190, 190, 0);
+            }
+          }
+          h4 {
+            width: 100%;
+            font-size: 40px;
+            font-family: $Source;
+            font-weight: 700;
+            color: $darkest-gray2;
+            margin: 0;
+            padding: 0;
+            transition: 0.5s;
+          }
+          p {
+            font-size: 13px;
+            font-family: $Source;
+            color: $darkest-gray2;
+            margin: 0;
+          }
+        }
+      }
+      .price_text {
+        height: 405px;
+        padding-top: 110px;
+        background-color: $light-gray;
+        p {
+          font-family: $Source;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 40px;
+          color: $darkest-gray2;
+          margin: 0;
+          text-transform: capitalize;
+        }
+        .price_btn {
+          margin: 50px 0 0;
+          padding: 0;
+          width: 145px;
+          height: 45px;
+          border-radius: 3px;
+          background-color: $darkest-gray2;
+          color: $white;
+          font-size: 12px;
+          font-family: $Source;
+          font-weight: 600;
+          text-transform: uppercase;
+          border: none;
+          box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+          outline: none;
+          transition: 0.5s;
+        }
+      }
+      &:hover .price_name {
+        background-color: $red;
+      }
+      &:hover .price_number h4 {
+        color: $red;
+      }
+      &:hover .price_btn {
+        background-color: $red;
+      }
+    }
+  }
+}
+
+.wrap_team {
+  max-width: $width;
+  height: 744px;
+  padding-top: 150px;
+  text-align: center;
+  position: relative;
+  .bg_team {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  .team_content {
+    h2 {
+      @include h2;
+    }
+    p {
+      @include p-Open;
+      color: $light-gray;
+    }
+  }
+  .team_blocks {
+    @include flex(space-between, center);
+    .team_item {
+      width: 140px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      .team_image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 3px $red;
+        overflow: hidden;
+        margin: 3px auto;
+        transition: 0.5s;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .vertical_line {
+        position: absolute;
+        top: -25%;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        display: block;
+        width: 105px;
+        height: 1px;
+        background-color: $dark-gray;
+        transform: rotate(90deg);
+        transition: 0.5s;
+        margin: 0 auto;
+      }
+      .team_text {
+        h4 {
+          position: absolute;
+          bottom: -100%;
+          left: 0;
+          right: 0;
+          font-size: 24px;
+          font-family: $Open;
+          font-weight: 600;
+          text-transform: capitalize;
+          color: $red;
+          margin: 80px auto 0;
+          padding: 0;
+          z-index: -1;
+          transition: 0.7s;
+        }
+        p {
+          position: absolute;
+          bottom: -100%;
+          left: 0;
+          right: 0;
+          font-family: $Source;
+          font-size: 14px;
+          color: $white;
+          text-transform: capitalize;
+          margin: 5px auto 0;
+          padding: 0;
+          transition: 0.9s;
+          z-index: -1;
+        }
+      }
+      .team_image:hover {
+        width: 75px;
+        height: 75px;
+        margin: 5px auto;
+        box-shadow: 0 0 0 5px $red;
+      }
+      .team_image:hover ~ .vertical_line {
+        top: 30%;
+        z-index: -1;
+      }
+      .team_image:hover ~ .team_text h4 {
+        bottom: 30px;
+        z-index: 0;
+      }
+      .team_image:hover ~ .team_text p {
+        bottom: 0;
+        z-index: 0;
+      }
+    }
+  }
+}
+
+.wrap_company {
+  max-width: $width;
+  text-align: center;
+  padding: 140px 0 0;
+  background-color: $light-gray;
+  .company_content {
+    h2 {
+      @include h2;
+      color: $dark-gray;
+      letter-spacing: normal;
+    }
+    p {
+      @include p-Open;
+      margin: 0 auto 30px;
+      line-height: 21px;
+    }
+    .ball {
+      &::before,
+      &::after {
+        background-color: $darkest-gray2;
+      }
+    }
+  }
+  .company_slider {
+    // @include flex(space-between, center);
+    .company_slide {
+      height: 100px;
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+      background-color: $white;
+      transition: 0.5s;
+      margin: 12px;
       img {
         width: 100%;
         height: 100%;
+        object-fit: none;
+      }
+      &:hover {
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+        background-color: $red;
       }
     }
   }

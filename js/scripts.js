@@ -17,7 +17,7 @@ $('.service_slider').slick({
   verticalSwiping: true
 });
 
-$('.trip_img').fancybox({
+$('.work_item .item_img').fancybox({
   loop: true,
   buttons: [
     'zoom',
@@ -28,4 +28,47 @@ $('.trip_img').fancybox({
     'thumbs',
     'close'
   ]
+});
+
+$('.text_block').slick({
+  fade: false,
+  autoplay: false,
+  autoplaySpeed: 5000,
+  infinite: false,
+  arrows: false,
+  dots: true,
+  asNavFor: '.image_block'
+});
+
+$('.image_block').slick({
+  fade: false,
+  autoplay: false,
+  autoplaySpeed: 5000,
+  infinite: false,
+  arrows: false,
+  dots: false,
+  rtl: true,
+  asNavFor: '.text_block'
+});
+
+// company_slider---------------
+
+$('.slider1').slick({
+  autoplay: true,
+  autoplaySpeed: 4000,
+  infinite: true,
+  arrows: false,
+  dots: false,
+  slidesToShow: 5,
+  speed: 1500
+});
+
+$('.slider2').slick({
+  autoplay: true,
+  autoplaySpeed: 4000,
+  infinite: true,
+  arrows: false,
+  dots: false,
+  slidesToShow: 5,
+  speed: 1500
 });

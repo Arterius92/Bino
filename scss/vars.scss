@@ -20,3 +20,32 @@ $red: #e74c3c;
   align-items: $ai;
   flex-wrap: wrap;
 }
+
+@mixin h2 {
+  font-size: 36px;
+  font-family: $Source;
+  font-weight: 700;
+  color: $white;
+  margin: 0 0 30px;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+@mixin p-Source {
+  font-size: 14px;
+  font-family: $Source;
+  font-weight: normal;
+  line-height: 29px;
+  color: $darkest-gray2;
+  margin: 0 10px 30px;
+  padding: 0;
+}
+
+@mixin p-Open {
+  margin: 0 10px 30px;
+  padding: 0;
+  font-family: $Open;
+  font-size: 14px;
+  color: $darkest-gray2;
+}
