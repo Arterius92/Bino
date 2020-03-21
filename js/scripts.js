@@ -72,3 +72,20 @@ $('.slider2').slick({
   slidesToShow: 5,
   speed: 1500
 });
+
+// button up-------------------
+
+var btn = $('.btn_up');
+
+$(window).scroll(function() {
+  if ($(this).scrollTop() > 300) {
+    $(btn).addClass('show');
+	} else {
+		$(btn).removeClass('show');
+	}
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({ scrollTop: 0 }, '300');
+});

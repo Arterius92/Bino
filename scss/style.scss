@@ -168,23 +168,7 @@ body {
         margin: 45px auto 68px;
       }
       .home_btn {
-        width: 225px;
-        height: 55px;
-        background-color: $red;
-        border: none;
-        border-radius: 3px;
-        color: $white;
-        font-size: 14px;
-        text-transform: uppercase;
-        font-family: $Open;
-        font-weight: bold;
-        transition: 0.5s;
-        &:hover {
-          height: 52px;
-          line-height: 40px;
-          border: 2px solid $white;
-          background: transparent;
-        }
+        @include btn;
       }
       .btn1 {
         margin-right: 30px;
@@ -319,28 +303,10 @@ body {
       }
       p {
         @include p-Source;
-        margin: 35px 0 0;
+        margin: 35px 0;
       }
       .about_btn {
-        margin-top: 35px;
-        width: 225px;
-        height: 55px;
-        background-color: $red;
-        border: none;
-        border-radius: 3px;
-        color: $white;
-        font-size: 14px;
-        text-transform: uppercase;
-        font-family: $Open;
-        font-weight: bold;
-        transition: 0.5s;
-        &:hover {
-          height: 52px;
-          line-height: 40px;
-          border: 2px solid $darkest-gray2;
-          background: transparent;
-          color: $darkest-gray2;
-        }
+        @include btn;
       }
     }
   }
@@ -351,7 +317,7 @@ body {
     background-color: $light-black;
     position: relative;
     .service_content {
-      margin: 0 80px 0 0;
+      margin: 0 80px 0 50px;
       padding-top: 130px;
       padding-right: 0;
       width: 595px;
@@ -540,12 +506,8 @@ body {
             height: 4px;
             background-color: $white;
           }
-          h3 {
-            font-family: $Source;
-            font-weight: 600;
-            font-size: 24px;
-            text-transform: uppercase;
-            color: $white;
+          h4 {
+            @include h4-Source;
             margin: 30px 0 15px 0;
           }
           p {
@@ -753,12 +715,7 @@ body {
         position: relative;
         transition: 0.5s;
         h4 {
-          font-size: 24px;
-          font-family: $Open;
-          font-weight: 600;
-          color: $white;
-          text-transform: uppercase;
-          margin: 0;
+          @include h4-Open;
           padding-top: 50px;
         }
         .price_number {
@@ -913,13 +870,10 @@ body {
           bottom: -100%;
           left: 0;
           right: 0;
-          font-size: 24px;
-          font-family: $Open;
-          font-weight: 600;
+          @include h4-Open;
           text-transform: capitalize;
           color: $red;
           margin: 80px auto 0;
-          padding: 0;
           z-index: -1;
           transition: 0.7s;
         }
@@ -987,7 +941,7 @@ body {
     // @include flex(space-between, center);
     .company_slide {
       height: 100px;
-      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
       background-color: $white;
       transition: 0.5s;
       margin: 12px;
@@ -997,9 +951,333 @@ body {
         object-fit: none;
       }
       &:hover {
-        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
         background-color: $red;
       }
     }
+  }
+}
+
+.wrap_blog {
+  max-width: $width;
+  text-align: center;
+  background-color: $light-gray;
+  padding-top: 120px;
+  .blog_content {
+    h2 {
+      @include h2;
+      color: $dark-gray;
+    }
+    p {
+      @include p-Open;
+    }
+    .ball {
+      &::before,
+      &::after {
+        background-color: $darkest-gray2;
+      }
+    }
+  }
+  .blog_cards {
+    @include flex(space-between, center);
+    .card {
+      width: 960px;
+      height: 480px;
+      @include flex(space-between, center);
+      .card_image {
+        width: 480px;
+        height: 480px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .card_text {
+        text-align: left;
+        width: 480px;
+        height: 480px;
+        padding: 65px 50px;
+        background-color: $red;
+        position: relative;
+        h5 {
+          font-family: $Open;
+          font-size: 14px;
+          color: $white;
+          margin: 0;
+        }
+        h4 {
+          @include h4-Source;
+          margin: 25px 0 0;
+        }
+        span {
+          display: block;
+          width: 45px;
+          height: 4px;
+          background-color: $white;
+          margin: 15px 0 0;
+        }
+        p {
+          font-family: $Open;
+          font-size: 16px;
+          line-height: 30px;
+          margin: 45px 0 40px;
+          color: $white;
+        }
+        .read_more_btn {
+          font-family: $Open;
+          font-weight: 600;
+          font-style: italic;
+          font-size: 18px;
+          border: none;
+          background-color: transparent;
+          color: $white;
+          margin: 0;
+          padding: 0;
+          text-transform: capitalize;
+          &::after {
+            content: '\f101';
+            font-family: 'Font Awesome 5 Free';
+          }
+          &:hover {
+            font-weight: 700;
+          }
+        }
+        &.left::before {
+          content: '';
+          border: 35px solid transparent;
+          border-right: 30px solid $red;
+          display: block;
+          width: 0;
+          height: 0;
+          position: absolute;
+          right: 100%;
+          top: calc(50% - 22.5px);
+          margin-right: -1px;
+        }
+        &.right::before {
+          content: '';
+          border: 35px solid transparent;
+          border-left: 30px solid $red;
+          display: block;
+          width: 0;
+          height: 0;
+          position: absolute;
+          left: 100%;
+          top: calc(50% - 22.5px);
+          margin-left: -1px;
+        }
+      }
+    }
+  }
+}
+
+.wrap_contact_us {
+  max-width: $width;
+  text-align: center;
+  padding: 145px 0;
+  background-color: $light-gray;
+  .contact_content {
+    h2 {
+      @include h2;
+      color: $dark-gray;
+    }
+    p {
+      @include p-Open;
+    }
+    .ball {
+      &::before,
+      &::after {
+        background-color: $darkest-gray2;
+      }
+    }
+  }
+  .form {
+    @include flex(flex-start, flex-start);
+    text-align: left;
+    .information {
+      width: 475px;
+      height: 565px;
+      background-color: $white;
+      box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+      margin-right: 30px;
+      padding: 80px;
+      h4 {
+        @include h4-Source;
+        color: $red;
+        margin-bottom: 20px;
+      }
+      p {
+        font-family: $Open;
+        font-size: 18px;
+        line-height: 24px;
+        color: $darkest-gray2;
+        margin-bottom: 65px;
+      }
+    }
+    .message {
+      width: 665px;
+      height: 565px;
+      background-color: $white;
+      box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+      padding: 95px;
+      form {
+        @include flex(center, center);
+        color: $darkest-gray2;
+        font-size: 14px;
+        line-height: 24px;
+        font-family: $Open;
+        font-weight: 600;
+        input,
+        textarea {
+          width: 475px;
+          height: 45px;
+          margin: 0 auto 5px;
+          padding: 10px;
+          border: none;
+          outline: none;
+          border-bottom: 1px solid $gray;
+        }
+        textarea {
+          height: 125px;
+          resize: none;
+          margin-bottom: 30px;
+        }
+        input,
+        textarea {
+          @include placeholder {
+            opacity: 1;
+            transition: opacity 300ms;
+          }
+          &:focus {
+            @include placeholder {
+              opacity: 0;
+            }
+          }
+        }
+      }
+      .send_btn {
+        width: 160px;
+        height: 45px;
+        background-color: $red;
+        font-family: $Open;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 40px;
+        color: $white;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 3px;
+        margin: 0;
+        padding: 0;
+        box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+.wrap_footer {
+  text-align: center;
+  padding: 150px 0 130px;
+  position: relative;
+  color: $white;
+  .bg_footer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .footer_content {
+    h2 {
+      font-family: $Open;
+      font-weight: normal;
+      font-size: 36px;
+      line-height: 30px;
+      margin: 0;
+      span {
+        font-weight: 700;
+      }
+    }
+    p {
+      font-size: 18px;
+      font-family: $Open;
+      margin: 20px 0 65px;
+    }
+    .footer_btn {
+      @include btn;
+    }
+  }
+}
+
+footer {
+  background-color: $light-black;
+  height: 90px;
+  padding-top: 25px;
+  .footer_content {
+    @include flex(space-between, center);
+    .socials {
+      width: 300px;
+      margin: 0;
+      padding: 0;
+      @include flex(space-between, center);
+      list-style: none;
+      li {
+        a {
+          font-size: 24px;
+          color: $darkest-gray2;
+          text-decoration: none;
+          &:hover {
+            color: $red;
+          }
+        }
+      }
+    }
+    p {
+      font-size: 14px;
+      font-family: $Open;
+      font-weight: 600;
+      color: $darkest-gray2;
+    }
+  }
+}
+
+.btn_up {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: $red;
+  position: fixed;
+  bottom: 65px;
+  right: 50px;
+  z-index: 1000;
+  padding-top: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.5s ease;
+  &::before {
+    content: '\f106';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: bold;
+    font-size: 20px;
+    color: $light-gray;
+  }
+  &:hover {
+    background-color: #fc776a;
+  }
+  &:hover::before {
+    color: $white;
+  }
+  &:active {
+    background-color: $red;
+  }
+  &:active::before {
+    color: $white;
+  }
+  &.show {
+    opacity: 1;
   }
 }

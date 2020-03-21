@@ -21,15 +21,53 @@ $red: #e74c3c;
   flex-wrap: wrap;
 }
 
+@mixin btn {
+  width: 225px;
+  height: 55px;
+  background-color: #e74c3c;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: $Open;
+  font-weight: 700;
+  transition: 0.5s;
+  margin: 0;
+  padding: 0;
+  &:hover {
+    line-height: 40px;
+    border: 2px solid #fff;
+    background: transparent;
+  }
+}
+
 @mixin h2 {
   font-size: 36px;
   font-family: $Source;
   font-weight: 700;
   color: $white;
   margin: 0 0 30px;
-  padding: 0;
   text-transform: uppercase;
   letter-spacing: 5px;
+}
+
+@mixin h4-Source {
+  font-size: 24px;
+  font-family: $Source;
+  font-weight: 600;
+  color: $white;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+@mixin h4-Open {
+  font-size: 24px;
+  font-family: $Open;
+  font-weight: 600;
+  color: $white;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 @mixin p-Source {
@@ -48,4 +86,19 @@ $red: #e74c3c;
   font-family: $Open;
   font-size: 14px;
   color: $darkest-gray2;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
 }
