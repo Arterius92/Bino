@@ -25,28 +25,7 @@ body {
 }
 
 .ball {
-  width: 10px;
-  height: 10px;
-  background-color: $red;
-  border-radius: 50%;
-  margin: 0 auto 45px;
-  position: relative;
-  transition: 0.3s;
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 1px;
-    background-color: $light-gray;
-    position: absolute;
-    top: 45%;
-    left: -100px;
-  }
-  &::after {
-    content: '';
-    left: 30px;
-  }
+  @include ball;
 }
 
 .wrap_home {
@@ -166,90 +145,82 @@ body {
         color: $gray;
         width: 600px;
         margin: 45px auto 68px;
+        animation-delay: 1.5s;
       }
       .home_btn {
         @include btn;
       }
       .btn1 {
         margin-right: 30px;
+        animation-delay: 2s;
+      }
+      .btn2 {
+        animation-delay: 2.5s;
       }
     }
   }
 
-  .triangle-left,
-  .triangle-right {
+  .triangle {
     width: 0;
     height: 0;
     position: absolute;
     bottom: 0;
+    margin: -2px;
   }
-  .triangle-left {
+  .triangle_left {
     left: 0;
-    border-bottom: 125px solid $white;
     border-right: 960px solid transparent;
-    transition: 0.5s;
-
-    // Нужна анимация для JavaScript
-    // &:hover {
-    //   border-bottom: 125px solid red;
-    //   border-right: 960px solid transparent;
-    // }
   }
-
-  .triangle-right {
+  .triangle_right {
     right: 0;
-    border-bottom: 125px solid $white;
     border-left: 960px solid transparent;
-    transition: 0.5s;
   }
-  .icon_anchor {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: $light-gray;
-    cursor: pointer;
-    box-shadow: 0 0 0 $gray;
-    margin: 155px auto 0;
-    animation: pulse 2s infinite;
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(190, 190, 190, 1);
-      }
-      70% {
-        box-shadow: 0 0 0 10px rgba(190, 190, 190, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(190, 190, 190, 0);
-      }
-    }
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: none;
-    }
+  .active {
+    transition: 1.5s 1.5s;
+    border-bottom: 125px solid $white;
   }
 }
 
 .wrap_about_us {
+  position: relative;
   max-width: $width;
   margin: 0 auto;
-  .about_us {
+  .icon_anchor {
+    @include icon;
+    top: -35px;
+    left: 0;
+    right: 0;
+  }
+  .about_us_content {
     padding-top: 115px;
     padding-bottom: 110px;
     @include flex(space-between, center);
     .item {
+      position: relative;
       width: 280px;
       height: 220px;
       text-align: center;
       &:not(:last-child) {
         margin-right: 15px;
       }
-      .icon {
+      .icon_block {
         width: 72px;
         height: 72px;
         border: 1px solid $gray;
+        color: $red;
+        font-size: 25px;
         margin: 0 auto;
         @include flex(center, center);
+        transition: 0.5s;
+      }
+      i {
+        color: $red;
+        font-size: 25px;
+        margin-top: 23px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
       }
       h3 {
         font-size: 18px;
@@ -257,6 +228,7 @@ body {
         font-weight: 600;
         text-transform: uppercase;
         margin: 30px 0 0;
+        transition: 0.3s;
       }
       span {
         display: block;
@@ -272,6 +244,13 @@ body {
         font-weight: 300;
         color: $darkest-gray2;
         margin: 0;
+      }
+      &:hover .icon_block {
+        border-color: $red;
+        transform: rotate(45deg);
+      }
+      &:hover h3 {
+        color: $red;
       }
     }
   }
@@ -307,6 +286,12 @@ body {
       }
       .about_btn {
         @include btn;
+        &:hover {
+          line-height: 40px;
+          border: 2px solid $light-black;
+          background: transparent;
+          color: $light-black;
+        }
       }
     }
   }
@@ -350,34 +335,11 @@ body {
           }
         }
         .icon_service {
-          width: 65px;
-          height: 65px;
-          border-radius: 50%;
-          background: $light-gray;
-          cursor: pointer;
-          box-shadow: 0 0 0 $gray;
+          @include icon;
           margin: 0;
-          position: absolute;
           z-index: 10;
           top: calc(50% - 32.5px);
           right: -112px;
-          animation: pulse 2s infinite;
-          @keyframes pulse {
-            0% {
-              box-shadow: 0 0 0 0 rgba(190, 190, 190, 1);
-            }
-            70% {
-              box-shadow: 0 0 0 10px rgba(190, 190, 190, 0);
-            }
-            100% {
-              box-shadow: 0 0 0 0 rgba(190, 190, 190, 0);
-            }
-          }
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: none;
-          }
         }
       }
     }
@@ -432,7 +394,7 @@ body {
     @include p-Open;
   }
   .ball {
-    margin-bottom: 65px;
+    @include ball;
     &::before,
     &::after {
       background-color: $darkest-gray2;
@@ -538,6 +500,13 @@ body {
       }
       p {
         @include p-Open;
+      }
+      .ball {
+        @include ball;
+        &::before,
+        &::after {
+          background-color: $darkest-gray2;
+        }
       }
     }
     .work_slider {
@@ -696,7 +665,7 @@ body {
       @include p-Open;
     }
     .ball {
-      margin: 0 auto;
+      @include ball;
       &::before,
       &::after {
         background-color: $darkest-gray2;
@@ -704,7 +673,7 @@ body {
     }
   }
   .price_blocks {
-    padding: 65px 0 140px;
+    padding: 0 0 140px;
     @include flex(space-between, center);
     .price_item {
       width: 380px;
@@ -828,6 +797,10 @@ body {
       @include p-Open;
       color: $light-gray;
     }
+    .ball {
+      @include ball;
+      margin: 0 auto 65px;
+    }
   }
   .team_blocks {
     @include flex(space-between, center);
@@ -931,6 +904,7 @@ body {
       line-height: 21px;
     }
     .ball {
+      @include ball;
       &::before,
       &::after {
         background-color: $darkest-gray2;
@@ -938,7 +912,6 @@ body {
     }
   }
   .company_slider {
-    // @include flex(space-between, center);
     .company_slide {
       height: 100px;
       box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
@@ -972,6 +945,7 @@ body {
       @include p-Open;
     }
     .ball {
+      @include ball;
       &::before,
       &::after {
         background-color: $darkest-gray2;
@@ -1086,6 +1060,7 @@ body {
       @include p-Open;
     }
     .ball {
+      @include ball;
       &::before,
       &::after {
         background-color: $darkest-gray2;
