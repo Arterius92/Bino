@@ -307,7 +307,7 @@
         margin-top: 30px;
       }
     }
-  } 
+  }
   .wrap_portfolio {
     .case_study {
       .work_slider {
@@ -397,7 +397,7 @@
         }
       }
     }
-  }  
+  }
   .wrap_team {
     .team_blocks {
       padding-top: 0;
@@ -482,7 +482,9 @@
         }
         padding-top: 60px;
         .home_btn {
-          width: 190px;
+          span {
+            width: 190px;
+          }
         }
         .btn1 {
           margin-right: 0;
@@ -490,7 +492,7 @@
         }
       }
     }
-  }   
+  }
   .wrap_about_us {
     .history {
       .monitor_image {
@@ -501,18 +503,36 @@
       }
     }
   }
-  .wrap_portfolio .work_gallery .work_item {
-    width: 120px;
-    height: 120px;
-    .item_img {
-      .item_text {
-        margin: 0 0 10px 10px;
-        span {
-          height: 2px;
+  .wrap_portfolio {
+    .work_gallery {
+      .work_item {
+        width: 120px;
+        height: 120px;
+        .item_img {
+          .item_text {
+            margin: 0 0 10px 10px;
+            span {
+              height: 2px;
+            }
+            h4 {
+              font-size: 14px;
+              margin: 10px 0;
+            }
+          }
         }
-        h4 {
-          font-size: 14px;
-          margin: 10px 0;
+      }
+    }
+    .case_study {
+      .work_slider {
+        .text_block {
+          .text_content {
+            p {
+              margin: 0 auto 25px;
+            }
+          }
+          .slick-dots {
+            margin: 25px auto;
+          }
         }
       }
     }
@@ -530,5 +550,12 @@
         }
       }
     }
+  }
+  .close {
+    top: -35px;
+    right: 25px;
+  }
+  .btn_up {
+    display: none;
   }
 }

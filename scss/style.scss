@@ -196,6 +196,17 @@ body {
       }
       .home_btn {
         @include btn;
+        span {
+          padding: 15px;
+          width: 225px;
+          height: 55px;
+        }
+        &:active {
+          &::after {
+            box-shadow: 0 0 2px rgba(255, 255, 255, 0.2),
+              inset -3px 3px 1em rgba(255, 255, 255, 0.2);
+          }
+        }
       }
       .btn1 {
         margin-right: 30px;
@@ -335,11 +346,11 @@ body {
       }
       .about_btn {
         @include btn;
-        &:hover {
-          line-height: 40px;
-          border: 2px solid $light-black;
-          background: transparent;
-          color: $light-black;
+        span {
+          padding: 15px;
+          width: 225px;
+          height: 55px;
+          font-size: 16px;
         }
       }
     }
@@ -607,22 +618,20 @@ body {
             line-height: 24px;
             color: $darkest-gray2;
             max-width: 550px;
-            margin: 0 auto;
+            margin: 0 auto 50px;
           }
-          button {
-            margin: 50px 0;
-            width: 145px;
-            height: 45px;
-            border-radius: 3px;
-            background-color: $red;
-            color: $white;
-            font-size: 12px;
-            font-family: $Open, sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            border: none;
-            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
-            outline: none;
+          .work_btn {
+            @include btn;
+            span {
+              padding: 13px;
+              width: 145px;
+              height: 45px;
+              font-size: 12px;
+            }
+            &::after {
+              top: 0;
+              bottom: 0;
+            }
           }
         }
         .slick-dots {
@@ -648,7 +657,7 @@ body {
         height: 764px;
         position: absolute;
         top: calc(50% - 362px);
-        right: 0;
+        right: -10px;
       }
     }
   }
@@ -797,21 +806,48 @@ body {
           text-transform: capitalize;
         }
         .price_btn {
-          margin: 50px 0 0;
-          padding: 0;
+          display: inline-block;
+          text-decoration: none;
+          outline: none;
           width: 145px;
           height: 45px;
+          margin: 50px 0 0;
+          padding: 10px;
           border-radius: 3px;
-          background-color: $darkest-gray2;
           color: $white;
-          font-size: 12px;
-          font-family: $Source, sans-serif;
-          font-weight: 600;
-          text-transform: uppercase;
-          border: none;
+          background-color: $darkest-gray2;
           box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
-          outline: none;
-          transition: 0.5s;
+          position: relative;
+          overflow: hidden;
+          cursor: pointer;
+          span {
+            font-size: 12px;
+            font-family: $Source, sans-serif;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 5;
+          }
+          &:before,
+          &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+          }
+        }
+        .price_btn:before {
+          transform: translateX(-100%);
+          background: $darkest-gray;
+          transition: transform .3s cubic-bezier(.55,.055,.675,.19);
+        }
+        .price_btn:after {
+          background: $red;
+          transform: translateX(100%);
+          transition: transform .3s cubic-bezier(.16,.73,.58,.62) .3s;
         }
       }
       &:hover {
@@ -823,9 +859,8 @@ body {
       &:hover .price_number h4 {
         color: $red;
       }
-      &:hover .price_btn {
-        background-color: $red;
-      }
+      &:hover .price_btn::before {transform: translateX(0);}
+      &:hover .price_btn::after {transform: translateX(0);}
     }
   }
 }
@@ -1213,20 +1248,7 @@ body {
         }
       }
       .send_btn {
-        width: 160px;
-        height: 45px;
-        background-color: $red;
-        font-family: $Open, sans-serif;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 40px;
-        color: $white;
-        text-transform: uppercase;
-        border: none;
-        border-radius: 3px;
-        margin: 0;
-        padding: 0;
-        box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+        @include btn;
       }
     }
   }
@@ -1264,6 +1286,12 @@ body {
     }
     .footer_btn {
       @include btn;
+      &:active {
+        &::after {
+          box-shadow: 0 0 2px rgba(255, 255, 255, 0.2),
+            inset -3px 3px 1em rgba(255, 255, 255, 0.2);
+        }
+      }
     }
   }
 }
@@ -1335,6 +1363,80 @@ footer {
   }
   &.show {
     opacity: 1;
+  }
+}
+
+.modal_mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: none;
+}
+.modal {
+  max-width: 400px;
+  height: 300px;
+  position: fixed;
+  top: calc(50% - 150px);
+  left: calc(50% - 200px);
+  background: $light-gray;
+  border-radius: 3px;
+  z-index: 11;
+  text-align: center;
+  padding: 20px;
+  display: none;
+  form {
+    font-size: 14px;
+    line-height: 24px;
+    font-family: $Open, sans-serif;
+    font-weight: 600;
+    input {
+      max-width: 100%;
+      height: 45px;
+      margin: 5px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid $gray;
+    }
+    input {
+      @include placeholder {
+        opacity: 1;
+        transition: opacity 300ms;
+      }
+      &:focus {
+        @include placeholder {
+          opacity: 0;
+        }
+      }
+    }
+  }
+  .modal_btn {
+    @include btn;
+    margin: 25px auto 0;
+  }
+}
+
+.close {
+  font-size: 40px;
+  line-height: 10px;
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid $red;
+  border-radius: 50%;
+  color: $white;
+  &:hover {
+    color: $red;
   }
 }
 

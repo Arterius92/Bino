@@ -84,6 +84,12 @@ $(function() {
         settings: {
           slidesToShow: 2
         }
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: 1
+        }
       }
     ]
   });
@@ -108,6 +114,12 @@ $(function() {
         settings: {
           slidesToShow: 2
         }
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: 1
+        }
       }
     ]
   });
@@ -128,6 +140,14 @@ $(function() {
   btn.on('click', function(e) {
     e.preventDefault();
     $('html, body').animate({ scrollTop: 0 }, '300');
+  });
+
+  $('.home .btn1').click(function(){
+    $('.modal_mask, .modal').fadeIn();
+  });
+  
+  $('.modal_mask, .close').click(function(){
+    $('.modal_mask, .modal').fadeOut();
   });
 
   // triangle show--------------------

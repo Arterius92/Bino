@@ -3,7 +3,11 @@
 @mixin transition {
   @for $i from 1 through 50 {
     &:nth-child(#{$i}) {
-      transition: transform 1s #{$i * .08}s cubic-bezier(.29,1.4,.44,.96);
+      transition: transform
+        1s
+        #{$i *
+        0.08}s
+        cubic-bezier(0.29, 1.4, 0.44, 0.96);
     }
   }
 }
@@ -53,7 +57,7 @@ $contrast: darken($main, 10%);
   li {
     width: 100%;
     text-align: center;
-    padding: .25em;
+    padding: 0.25em;
   }
 }
 
@@ -70,7 +74,8 @@ $contrast: darken($main, 10%);
   box-sizing: border-box;
   pointer-events: none;
   padding-top: 125px;
-  transition: width 475ms ease-out, transform 450ms ease, border-radius .8s .1s ease;
+  transition: width 475ms ease-out, transform 450ms ease,
+    border-radius 0.8s 0.1s ease;
   border-bottom-left-radius: 100vw;
   @include alpha-attribute('background-color', rgba($contrast, 0.8), white);
   @media (min-width: 768px) {
@@ -105,9 +110,11 @@ $contrast: darken($main, 10%);
       display: block;
       padding: 1rem;
       font-size: 25px;
+      border-bottom: 1px solid $darkest-gray;
+      background-color: rgba(0, 0, 0, 0.4);
       @media (min-width: 768px) {
         text-align: right;
-        padding: .5rem;
+        padding: 0.5rem;
       }
       &:hover {
         cursor: pointer;
@@ -121,15 +128,15 @@ input.hamburger {
   display: none;
   &:checked {
     & ~ .drawer-list {
+      transform: translatex(0);
+      border-bottom-left-radius: 0;
+      li {
         transform: translatex(0);
-        border-bottom-left-radius: 0;
-        li {
-          transform: translatex(0);
-          @include transition;
-          a {
-            padding-right: 15px;
-          }
+        @include transition;
+        a {
+          padding-right: 15px;
         }
+      }
     }
     & ~ label {
       > i {
@@ -167,12 +174,12 @@ label.hamburger {
     close,
     open {
       text-transform: uppercase;
-      font-size: .8em;
+      font-size: 0.8em;
       position: absolute;
       transform: translateY(50px);
       text-align: center;
       overflow: hidden;
-      transition: width .25s .35s, color .45s .35s;
+      transition: width 0.25s 0.35s, color 0.45s 0.35s;
     }
     close {
       color: rgba(0, 0, 0, 0);
@@ -191,8 +198,8 @@ label.hamburger {
     top: 50%;
     background-color: $red;
     pointer-events: auto;
-    transition-duration: .35s;
-    transition-delay: .35s;
+    transition-duration: 0.35s;
+    transition-delay: 0.35s;
     &:before,
     &:after {
       position: absolute;
@@ -201,7 +208,7 @@ label.hamburger {
       height: 2px;
       left: 50%;
       background-color: $red;
-      content: "";
+      content: '';
       transition: transform 0.35s;
       transform-origin: 50% 50%;
     }
