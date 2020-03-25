@@ -2,11 +2,16 @@
 @import 'vars';
 @import 'slick-theme';
 @import 'slick';
+@import 'hamburger-menu';
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -39,6 +44,9 @@ body {
     display: flex;
     .slick-list {
       z-index: -1;
+      .slider-track {
+        transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
+      }
     }
     .slick-arrow {
       width: 45px;
@@ -74,34 +82,38 @@ body {
       }
     }
     .slide {
-      position: relative;
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.6);
-        z-index: 0;
-      }
       img {
-        width: 100%;
+        transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
+        transform: scale(1.2);
+      }
+      &.slick-active img {
+        transform: scale(1);
       }
     }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
   }
-
   .home {
     max-height: 990px;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
     header {
-      height: 130px;
+      max-height: 130px;
       padding: 40px 0;
       @include flex(space-between, center);
+      label.hamburger {
+        display: none;
+      }
       .menu {
         ul {
           list-style: none;
@@ -109,14 +121,50 @@ body {
           padding: 0;
           display: flex;
           li {
-            margin-left: 60px;
             a {
+              position: relative;
+              display: block;
+              width: 100px;
+              height: 40px;
               text-decoration: none;
+              text-align: center;
               font-size: 14px;
-              font-family: $Open;
+              font-family: $Open, sans-serif;
               font-weight: bold;
+              line-height: 40px;
               color: $light-gray;
               text-transform: uppercase;
+              transition: 0.5s;
+              span {
+                position: absolute;
+                width: 25%;
+                height: 100%;
+                background-color: $red;
+                z-index: -1;
+                transform-origin: top;
+                transform: scaleY(0);
+                transition: transform 0.5s;
+              }
+              &:hover span {
+                transform-origin: bottom;
+                transform: scaleY(1);
+              }
+              & span:nth-child(1) {
+                left: 0;
+                transition-delay: 0s;
+              }
+              & span:nth-child(2) {
+                left: 25%;
+                transition-delay: 0.15s;
+              }
+              & span:nth-child(3) {
+                left: 50%;
+                transition-delay: 0.3s;
+              }
+              & span:nth-child(4) {
+                left: 75%;
+                transition-delay: 0.45s;
+              }
             }
           }
         }
@@ -126,7 +174,7 @@ body {
       padding: 195px 0 0;
       text-align: center;
       h3 {
-        font-family: $Source;
+        font-family: $Source, sans-serif;
         font-size: 24px;
         color: $light-gray;
         margin: 0 0 50px;
@@ -139,47 +187,42 @@ body {
         font-size: 72px;
       }
       p {
-        font-family: $Open;
+        font-family: $Open, sans-serif;
         font-size: 14px;
         line-height: 24px;
         color: $gray;
-        width: 600px;
+        max-width: 600px;
         margin: 45px auto 68px;
-        animation-delay: 1.5s;
       }
       .home_btn {
         @include btn;
       }
       .btn1 {
         margin-right: 30px;
-        animation-delay: 2s;
-      }
-      .btn2 {
-        animation-delay: 2.5s;
       }
     }
   }
-
-  .triangle {
-    width: 0;
-    height: 0;
-    position: absolute;
-    bottom: 0;
-    margin: -2px;
-  }
-  .triangle_left {
-    left: 0;
-    border-right: 960px solid transparent;
-  }
-  .triangle_right {
-    right: 0;
-    border-left: 960px solid transparent;
-  }
-  .active {
-    transition: 1.5s 1.5s;
-    border-bottom: 125px solid $white;
-  }
 }
+
+// .triangle {
+//   width: 0;
+//   height: 0;
+//   position: absolute;
+//   bottom: 0;
+//   margin: -2px;
+// }
+// .triangle_left {
+//   left: 0;
+//   border-right: 960px solid transparent;
+// }
+// .triangle_right {
+//   right: 0;
+//   border-left: 960px solid transparent;
+// }
+// .active {
+//   transition: 1.5s 1.5s;
+//   border-bottom: 125px solid $white;
+// }
 
 .wrap_about_us {
   position: relative;
@@ -224,7 +267,7 @@ body {
       }
       h3 {
         font-size: 18px;
-        font-family: $Open;
+        font-family: $Open, sans-serif;
         font-weight: 600;
         text-transform: uppercase;
         margin: 30px 0 0;
@@ -240,7 +283,7 @@ body {
       p {
         font-size: 12px;
         line-height: 20px;
-        font-family: $Source;
+        font-family: $Source, sans-serif;
         font-weight: 300;
         color: $darkest-gray2;
         margin: 0;
@@ -261,15 +304,21 @@ body {
     background: $gray;
   }
   .history {
-    max-height: 700px;
     @include flex(space-between, flex-start);
     flex-wrap: nowrap;
     padding-top: 140px;
     padding-bottom: 150px;
+    .monitor_image {
+      width: 505px;
+      height: 410px;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
     .history_text {
       max-width: 585px;
-      max-height: 310px;
-      margin-left: 10px;
+      margin-left: 15px;
       h2 {
         @include h2;
         margin: 0;
@@ -317,12 +366,12 @@ body {
           padding-left: 36px;
         }
       }
-      .item {
+      .item_service {
         margin-top: 65px;
         position: relative;
         .item_text {
           h3 {
-            font-family: $Open;
+            font-family: $Open, sans-serif;
             font-weight: 600;
             color: $red;
             font-size: 18px;
@@ -408,7 +457,7 @@ body {
     li {
       a {
         font-size: 14px;
-        font-family: $Open;
+        font-family: $Open, sans-serif;
         font-weight: normal;
         text-transform: uppercase;
         color: $darkest-gray2;
@@ -425,12 +474,10 @@ body {
       }
     }
   }
-
-  //  Сделать анимацию появления текста на картинке
   .work_gallery {
     margin: 50px 0 0 0;
     max-width: 100%;
-    @include flex(flex-start, flex-start);
+    @include flex(center, center);
     .work_item {
       width: 480px;
       height: 480px;
@@ -473,7 +520,7 @@ body {
             margin: 30px 0 15px 0;
           }
           p {
-            font-family: $Open;
+            font-family: $Open, sans-serif;
             font-size: 14px;
             color: $white;
             margin: 0;
@@ -491,8 +538,8 @@ body {
 
   .case_study {
     background-color: $light-gray;
-    padding-top: 140px;
-    height: 1190px;
+    padding: 140px 0 100px;
+    max-height: 1190px;
     .study_content {
       h2 {
         @include h2;
@@ -539,7 +586,7 @@ body {
             }
           }
           h3 {
-            font-family: $Open;
+            font-family: $Open, sans-serif;
             font-weight: 600;
             font-size: 18px;
             text-transform: uppercase;
@@ -554,12 +601,12 @@ body {
             margin: 30px auto 25px;
           }
           p {
-            font-family: $Source;
+            font-family: $Source, sans-serif;
             font-weight: 300;
             font-size: 14px;
             line-height: 24px;
             color: $darkest-gray2;
-            width: 550px;
+            max-width: 550px;
             margin: 0 auto;
           }
           button {
@@ -570,7 +617,7 @@ body {
             background-color: $red;
             color: $white;
             font-size: 12px;
-            font-family: $Open;
+            font-family: $Open, sans-serif;
             font-weight: 600;
             text-transform: uppercase;
             border: none;
@@ -579,7 +626,7 @@ body {
           }
         }
         .slick-dots {
-          margin: 50px 0;
+          margin: 50px auto;
           bottom: 0;
           li {
             background-color: $light-gray;
@@ -608,7 +655,7 @@ body {
 
   .progress {
     max-width: $width;
-    height: 510px;
+    min-height: 510px;
     position: relative;
     .bg_progress {
       width: 100%;
@@ -625,6 +672,7 @@ body {
       padding-top: 150px;
       color: $light-gray;
       .progress_item {
+        margin: 1%;
         .icon_block {
           width: 110px;
           height: 110px;
@@ -637,13 +685,13 @@ body {
         h3 {
           margin: 50px 0 15px;
           font-size: 30px;
-          font-family: $Source;
+          font-family: $Source, sans-serif;
           font-weight: 700;
           line-height: 30px;
         }
         p {
           font-size: 18px;
-          font-family: $Source;
+          font-family: $Source, sans-serif;
           margin: 0;
           text-transform: capitalize;
         }
@@ -678,6 +726,10 @@ body {
     .price_item {
       width: 380px;
       height: 610px;
+      transition: 0.5s;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
       .price_name {
         height: 205px;
         background-color: $darkest-gray2;
@@ -700,8 +752,8 @@ body {
           border-radius: 50%;
           background-color: $white;
           margin: 0 auto;
-          animation: pulse 2s infinite;
-          @keyframes pulse {
+          animation: pulsed 2s infinite;
+          @keyframes pulsed {
             0% {
               box-shadow: 0 0 0 0 rgba(190, 190, 190, 1);
             }
@@ -715,7 +767,7 @@ body {
           h4 {
             width: 100%;
             font-size: 40px;
-            font-family: $Source;
+            font-family: $Source, sans-serif;
             font-weight: 700;
             color: $darkest-gray2;
             margin: 0;
@@ -724,9 +776,10 @@ body {
           }
           p {
             font-size: 13px;
-            font-family: $Source;
+            font-family: $Source, sans-serif;
             color: $darkest-gray2;
             margin: 0;
+            padding: 0 10px;
           }
         }
       }
@@ -735,7 +788,7 @@ body {
         padding-top: 110px;
         background-color: $light-gray;
         p {
-          font-family: $Source;
+          font-family: $Source, sans-serif;
           font-weight: 600;
           font-size: 14px;
           line-height: 40px;
@@ -752,7 +805,7 @@ body {
           background-color: $darkest-gray2;
           color: $white;
           font-size: 12px;
-          font-family: $Source;
+          font-family: $Source, sans-serif;
           font-weight: 600;
           text-transform: uppercase;
           border: none;
@@ -760,6 +813,9 @@ body {
           outline: none;
           transition: 0.5s;
         }
+      }
+      &:hover {
+        transform: scale(1.1);
       }
       &:hover .price_name {
         background-color: $red;
@@ -780,6 +836,7 @@ body {
   padding-top: 150px;
   text-align: center;
   position: relative;
+  overflow: hidden;
   .bg_team {
     width: 100%;
     height: 100%;
@@ -788,6 +845,14 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
+  }
+  .bg_team_wave_line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .team_content {
     h2 {
@@ -813,14 +878,17 @@ body {
         width: 50px;
         height: 50px;
         border-radius: 50%;
+        background-color: $red;
         box-shadow: 0 0 0 3px $red;
         overflow: hidden;
+        cursor: pointer;
         margin: 3px auto;
         transition: 0.5s;
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: 0.5s;
         }
       }
       .vertical_line {
@@ -855,7 +923,7 @@ body {
           bottom: -100%;
           left: 0;
           right: 0;
-          font-family: $Source;
+          font-family: $Source, sans-serif;
           font-size: 14px;
           color: $white;
           text-transform: capitalize;
@@ -871,6 +939,9 @@ body {
         margin: 5px auto;
         box-shadow: 0 0 0 5px $red;
       }
+      .team_image:hover img {
+        opacity: 0.6;
+      }
       .team_image:hover ~ .vertical_line {
         top: 30%;
         z-index: -1;
@@ -883,6 +954,16 @@ body {
         bottom: 0;
         z-index: 0;
       }
+    }
+    .item1 {
+      margin-top: 15px;
+    }
+    .item2,
+    .item3 {
+      margin-top: -45px;
+    }
+    .item4 {
+      margin-top: 35px;
     }
   }
 }
@@ -913,6 +994,7 @@ body {
   }
   .company_slider {
     .company_slide {
+      width: 210px;
       height: 100px;
       box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
       background-color: $white;
@@ -953,10 +1035,11 @@ body {
     }
   }
   .blog_cards {
-    @include flex(space-between, center);
+    @include flex(center, center);
+    .cards_block1 {
+      position: relative;
+    }
     .card {
-      width: 960px;
-      height: 480px;
       @include flex(space-between, center);
       .card_image {
         width: 480px;
@@ -974,8 +1057,9 @@ body {
         padding: 65px 50px;
         background-color: $red;
         position: relative;
+        z-index: 1;
         h5 {
-          font-family: $Open;
+          font-family: $Open, sans-serif;
           font-size: 14px;
           color: $white;
           margin: 0;
@@ -992,14 +1076,14 @@ body {
           margin: 15px 0 0;
         }
         p {
-          font-family: $Open;
+          font-family: $Open, sans-serif;
           font-size: 16px;
           line-height: 30px;
           margin: 45px 0 40px;
           color: $white;
         }
         .read_more_btn {
-          font-family: $Open;
+          font-family: $Open, sans-serif;
           font-weight: 600;
           font-style: italic;
           font-size: 18px;
@@ -1012,9 +1096,6 @@ body {
           &::after {
             content: '\f101';
             font-family: 'Font Awesome 5 Free';
-          }
-          &:hover {
-            font-weight: 700;
           }
         }
         &.left::before {
@@ -1071,11 +1152,11 @@ body {
     @include flex(flex-start, flex-start);
     text-align: left;
     .information {
-      width: 475px;
+      width: 38%;
       height: 565px;
       background-color: $white;
       box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
-      margin-right: 30px;
+      margin-right: 2%;
       padding: 80px;
       h4 {
         @include h4-Source;
@@ -1083,7 +1164,7 @@ body {
         margin-bottom: 20px;
       }
       p {
-        font-family: $Open;
+        font-family: $Open, sans-serif;
         font-size: 18px;
         line-height: 24px;
         color: $darkest-gray2;
@@ -1091,7 +1172,7 @@ body {
       }
     }
     .message {
-      width: 665px;
+      width: 60%;
       height: 565px;
       background-color: $white;
       box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
@@ -1101,7 +1182,7 @@ body {
         color: $darkest-gray2;
         font-size: 14px;
         line-height: 24px;
-        font-family: $Open;
+        font-family: $Open, sans-serif;
         font-weight: 600;
         input,
         textarea {
@@ -1135,7 +1216,7 @@ body {
         width: 160px;
         height: 45px;
         background-color: $red;
-        font-family: $Open;
+        font-family: $Open, sans-serif;
         font-weight: 600;
         font-size: 14px;
         line-height: 40px;
@@ -1167,7 +1248,7 @@ body {
   }
   .footer_content {
     h2 {
-      font-family: $Open;
+      font-family: $Open, sans-serif;
       font-weight: normal;
       font-size: 36px;
       line-height: 30px;
@@ -1178,7 +1259,7 @@ body {
     }
     p {
       font-size: 18px;
-      font-family: $Open;
+      font-family: $Open, sans-serif;
       margin: 20px 0 65px;
     }
     .footer_btn {
@@ -1212,7 +1293,7 @@ footer {
     }
     p {
       font-size: 14px;
-      font-family: $Open;
+      font-family: $Open, sans-serif;
       font-weight: 600;
       color: $darkest-gray2;
     }
@@ -1256,3 +1337,5 @@ footer {
     opacity: 1;
   }
 }
+
+@import 'media';
