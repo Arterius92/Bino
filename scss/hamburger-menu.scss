@@ -144,9 +144,11 @@ input.hamburger {
         transform: rotate(90deg);
         &:before {
           transform: translate(-50%, -50%) rotate(315deg);
+          background-color: $white;
         }
         &:after {
           transform: translate(-50%, -50%) rotate(-315deg);
+          background-color: $white;
         }
       }
       close {

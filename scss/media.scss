@@ -172,11 +172,14 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .wrap_home {
+    .home_slider {
+      max-height: 770px;
+    }
     .home {
       .home_text {
-        padding: 140px 0 0;
+        padding: 75px 0 0;
         h3 {
           font-size: 20px;
         }
@@ -389,7 +392,7 @@
     .home {
       header {
         justify-content: flex-start;
-        label.hamburger {
+        content {
           display: block;
         }
         .menu {
@@ -398,17 +401,35 @@
       }
     }
   }
+  .wrap_price {
+    .price_blocks {
+      .price_item {
+        &:hover {
+          transform: none;
+        }
+      }
+    }
+  }
   .wrap_team {
     .team_blocks {
       padding-top: 0;
-      justify-content: center;
+      justify-content: space-evenly;
       .team_item {
-        width: 140px;
         height: 140px;
-        background-color: $darkest-gray;
-        margin: 1%;
-        border: 2px solid $red;
-        border-radius: 15px;
+        background-color: $light-black;
+        margin: 1.5%;
+        overflow: inherit;
+        &::after {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background-color: $red;
+          transform: skew(2deg, 2deg);
+          z-index: -1;
+        }
         .team_image {
           margin-top: 5px;
         }
@@ -557,5 +578,18 @@
   }
   .btn_up {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrap_home {
+    .home {
+      .home_text {
+        padding-top: 0;
+        p {
+          margin: 45px auto 50px;
+        }
+      }
+    }
   }
 }

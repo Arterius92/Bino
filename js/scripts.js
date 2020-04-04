@@ -62,7 +62,7 @@ $(function() {
     asNavFor: '.text_block'
   });
 
-  // company_slider--------------------
+  // company_slider-------------------------------------------------
 
   $('.slider1').slick({
     autoplay: true,
@@ -124,7 +124,7 @@ $(function() {
     ]
   });
 
-  // button up-------------------------
+  // button up-------------------------------------------------
 
   let btn = $('.btn_up');
   // let triangle = $('.triangle');
@@ -148,6 +148,22 @@ $(function() {
   
   $('.modal_mask, .close').click(function(){
     $('.modal_mask, .modal').fadeOut();
+  });
+
+  // Show filter gallery----------------------------------------------
+
+  $('.portfolio_nav a').click(function() {
+    $('.portfolio_nav li').removeClass('active');
+    $(this).parent('li').addClass('active');
+
+    let category = $(this).attr('data-filter');
+
+    if(category == 'all') {
+      $('.work_gallery .work_item').show();
+    } else {
+      $('.work_gallery .work_item').hide();
+      $('.work_gallery .work_item[data-filter="' + category + '"]').show();
+    }
   });
 
   // triangle show--------------------

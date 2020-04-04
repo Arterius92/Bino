@@ -21,6 +21,7 @@ body {
 .wrapper {
   max-width: $width;
   margin: 0 auto;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .container {
@@ -111,7 +112,7 @@ body {
       max-height: 130px;
       padding: 40px 0;
       @include flex(space-between, center);
-      label.hamburger {
+      content {
         display: none;
       }
       .menu {
@@ -346,11 +347,14 @@ body {
       }
       .about_btn {
         @include btn;
-        span {
-          padding: 15px;
-          width: 225px;
-          height: 55px;
-          font-size: 16px;
+        a {
+          text-decoration: none;
+          span {
+            padding: 15px;
+            width: 225px;
+            height: 55px;
+            font-size: 16px;
+          }
         }
       }
     }
@@ -474,15 +478,15 @@ body {
         color: $darkest-gray2;
         margin-right: 15px;
         text-decoration: none;
+        cursor: pointer;
         &::after {
           content: '/';
           padding-left: 15px;
         }
-        &:active {
-          font-weight: bold;
-          color: $red;
-        }
       }
+    }
+    li.active a {
+      color: $red;
     }
   }
   .work_gallery {
@@ -879,7 +883,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: -9;
   }
   .bg_team_wave_line {
     position: absolute;
@@ -915,15 +919,12 @@ body {
         border-radius: 50%;
         background-color: $red;
         box-shadow: 0 0 0 3px $red;
-        overflow: hidden;
-        cursor: pointer;
         margin: 3px auto;
         transition: 0.5s;
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: 0.5s;
         }
       }
       .vertical_line {
