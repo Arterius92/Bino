@@ -127,7 +127,6 @@ $(function() {
   // button up-------------------------------------------------
 
   let btn = $('.btn_up');
-  // let triangle = $('.triangle');
 
   $(window).scroll(function() {
     if ($(this).scrollTop() > 300) {
@@ -144,7 +143,7 @@ $(function() {
 
   // Show modal block----------------------------------------------------
 
-  $('.home .btn1').click(function(){
+  $('.home .btn1, .footer_btn').click(function(){
     $('.modal_mask, .modal').fadeIn();
   });
   
@@ -167,12 +166,6 @@ $(function() {
       $('.work_gallery .work_item[data-filter="' + category + '"]').show();
     }
   });
-
-  // triangle show--------------------
-
-  // $(window).load(function() {
-  //   $(triangle).addClass('active');
-  // });
 
   new WOW().init();
 });

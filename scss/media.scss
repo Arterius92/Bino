@@ -304,6 +304,10 @@
     }
   }
   .wrap_about_us {
+    .wrap_about_us:before {
+      height: 90px;
+      top: -89px;
+    }
     .history {
       @include flex(center, center);
       .history_text {

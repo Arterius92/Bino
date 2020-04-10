@@ -92,7 +92,6 @@ $red: #e74c3c;
     padding: 10px;
     border-radius: 3px;
     background-color: $red;
-    border: 1px solid darken($red, 5%);
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
     transition: transform 0.1s, box-shadow 0.2s, background-color 0.2s;
     cursor: pointer;
@@ -109,15 +108,15 @@ $red: #e74c3c;
     transition: box-shadow 0.1s;
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     span {
       background-color: lighten($red, 3%);
     }
   }
   &:active {
     span {
-      background-color: $red;
+      background-color: transparent;
+      outline: 2px solid $white;
       transform: scale(0.97);
       box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
     }
