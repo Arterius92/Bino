@@ -142,6 +142,8 @@ $(function() {
     $('html, body').animate({ scrollTop: 0 }, '300');
   });
 
+  // Show modal block----------------------------------------------------
+
   $('.home .btn1').click(function(){
     $('.modal_mask, .modal').fadeIn();
   });
