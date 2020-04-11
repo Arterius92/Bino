@@ -9,13 +9,25 @@
           width: 420px;
           height: 420px;
         }
+        .closed {
+          width: 0;
+        }
         .card_text {
           width: 420px;
           height: 420px;
           padding: 35px;
-          p {
-            margin: 20px 0;
+          .text {
+            p {
+              margin: 20px 0;
+            }
           }
+          .read_more_btn {
+            bottom: 35px;
+            left: 35px;
+          }
+        }
+        .opened {
+          width: 840px;
         }
       }
     }
@@ -30,19 +42,48 @@
           width: 360px;
           height: 360px;
         }
+        .closed {
+          width: 0;
+        }
         .card_text {
           width: 360px;
           height: 360px;
           padding: 15px;
-          h4 {
-            font-size: 20px;
+          .text {
+            height: 285px;
+            h4 {
+              font-size: 20px;
+            }
+            p {
+              font-size: 13px;
+            }
           }
-          p {
-            font-size: 13px;
-            margin: 20px 0;
+          .read_more_btn {
+            bottom: 25px;
+            left: 15px;
+          }
+        }
+        .opened {
+          width: 720px;
+          .text {
+            p {
+              line-height: 25px;
+            }
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 1439px) {
+  .wrap_blog .blog_cards .cards {
+    display: block;
+    .card1 {
+      float: left;
+    }
+    .card2 {
+      float: right;
     }
   }
 }
@@ -459,6 +500,16 @@
   .wrap_blog {
     .blog_cards {
       .card {
+        .closed {
+          width: 360px;
+        }
+        .opened {
+          width: 360px;
+          height: 480px;
+          .text {
+            height: 100%;
+          }
+        }
         .card_text.left::before {
           top: -64px;
           left: 0;

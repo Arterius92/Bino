@@ -168,4 +168,11 @@ $(function() {
   });
 
   new WOW().init();
+
+  $('.read_more_btn').click(function() {
+    $(this).toggleClass('open_btn');
+    $(this).text($(this).text() == 'Read More ' ? 'Close ' : 'Read More ');
+    $(this).parent('.card_text').toggleClass('opened');
+    $(this).parent('.card_text').siblings('.card_image').toggleClass('closed');
+  });
 });
