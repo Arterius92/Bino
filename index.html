@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bino project</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700i|Open+Sans:300,400,600,600i,700,700i|Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600;1,700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"/>
     <link rel="stylesheet" href="css/animate.min.css"/>
     <link rel="stylesheet" href="css/jquery.fancybox.min.css"/>
@@ -16,7 +16,7 @@
   <body>
     <div class="wrapper">
       <section class="wrap_home">
-        <a name="home"></a>
+        <a id="home"></a>
         <div class="home_slider">
           <div class="slide">
             <img src="img/background1.jpg" alt="Background_image" />
@@ -39,7 +39,7 @@
             <a href="#home">
               <img src="img/Logo.png" alt="Logo_image" class="logo wow bounceInLeft"/>
             </a>
-            <content>
+            <div class="mobile-menu">
               <input id="hamburger" class="hamburger" type="checkbox"/>
               <label class="hamburger" for="hamburger">
                 <i></i>
@@ -58,7 +58,7 @@
                       <li><a href="#blog">Blog</a></li>
                   </ul>
                   </section>
-            </content>
+            </div>
             <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <symbol id="icon-chrome" viewBox="0 0 32 32">
@@ -194,7 +194,7 @@
       </section>
 
       <section class="wrap_about_us">
-        <a name="about"></a>
+        <a id="about"></a>
         <div class="icon_anchor">
           <a href="#about">
             <img src="img/anchor.png" alt="Anchor_image" />
@@ -263,11 +263,11 @@
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </p>
-            <button class="about_btn">
-              <a data-fancybox href="https://www.youtube.com/embed/nxpuFcvuw0E?rel=0&showinfo=0&autoplay=0">
+            <a class="about_btn" data-fancybox href="https://www.youtube.com/embed/nxpuFcvuw0E?rel=0&showinfo=0&autoplay=0">
+              <button class="about_btn">
                 <span>BROWSE OUR WORK</span>
-              </a>
-            </button>
+              </button>
+            </a>
           </div>
         </div>
         <div class="our_service">
@@ -333,7 +333,7 @@
       </section>
 
       <section class="wrap_portfolio">
-        <a name="portfolio"></a>
+        <a id="portfolio"></a>
         <div class="container">
           <h2 class="wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="40">RECENT WORKS</h2>
           <p class="wow fadeInUp" data-wow-delay="0.7s" data-wow-offset="40">
@@ -370,84 +370,84 @@
         <div class="work_gallery wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="140">
           <div class="work_item" data-filter="art">
             <a href="img/image1.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image1.png" />
+              <img src="img/image1.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
-                <h4>T-shirt design</h3>
+                <h4>T-shirt design</h4>
                 <p>art / t-shirt</p>
               </div>
             </a>
           </div>
           <div class="work_item" data-filter="web-des">
             <a href="img/image2.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image2.png" />
+              <img src="img/image2.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
-                <h4>T-shirt design</h3>
+                <h4>T-shirt design</h4>
                 <p>art / t-shirt</p>
               </div>
             </a>
           </div>
           <div class="work_item" data-filter="video">
             <a href="img/image3.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image3.png" />
+              <img src="img/image3.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
-                <h4>T-shirt design</h3>
+                <h4>T-shirt design</h4>
                 <p>art / t-shirt</p>
               </div>
             </a>
           </div>
           <div class="work_item" data-filter="print-des">
             <a href="img/image4.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image4.png" />
+              <img src="img/image4.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
-                <h4>T-shirt design</h3>
+                <h4>T-shirt design</h4>
                 <p>art / t-shirt</p>
               </div>
             </a>
           </div>
           <div class="work_item" data-filter="animation">
             <a href="img/image5.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image5.png" />
+              <img src="img/image5.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
-                <h4>T-shirt design</h3>
+                <h4>T-shirt design</h4>
                 <p>art / t-shirt</p>
               </div>
             </a>
           </div>
           <div class="work_item" data-filter="photog">
             <a href="img/image6.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image6.png" />
+              <img src="img/image6.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
-                <h4>T-shirt design</h3>
+                <h4>T-shirt design</h4>
                 <p>art / t-shirt</p>
               </div>
             </a>
           </div>
           <div class="work_item" data-filter="web-des">
             <a href="img/image7.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image7.png" />
+              <img src="img/image7.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
-                <h4>T-shirt design</h3>
+                <h4>T-shirt design</h4>
                 <p>art / t-shirt</p>
               </div>
             </a>
           </div>
           <div class="work_item" data-filter="art">
             <a href="img/image8.png" data-fancybox="gallery" class="item_img">
-              <img src="img/image8.png" />
+              <img src="img/image8.png" alt="Gallery_Image"/>
               <div class="mask"></div>
               <div class="item_text">
                 <span></span>
@@ -569,7 +569,7 @@
       </section>
 
       <section class="wrap_price">
-        <a name="pricing"></a>
+        <a id="pricing"></a>
         <div class="container price_content">
           <h2 class="wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="40">Our Pricing</h2>
           <p class="wow fadeInUp" data-wow-delay="0.7s" data-wow-offset="40">
@@ -637,7 +637,7 @@
       </section>
 
       <section class="wrap_team">
-        <a name="team"></a>
+        <a id="team"></a>
         <img class="bg_team" src="img/bg_team.png" alt="BG_Team_Image" />
         <img class="bg_team_wave_line wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="140" src="img/Curve.png" alt="" />
         <div class="container team_content">
@@ -757,7 +757,7 @@
       </section>
 
       <section class="wrap_blog">
-        <a name="blog"></a>
+        <a id="blog"></a>
         <div class="container blog_content">
           <h2 class="wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="40">Our Blog</h2>
           <p class="wow fadeInUp" data-wow-delay="0.7s" data-wow-offset="40">
@@ -884,7 +884,7 @@
       </section>
 
       <section class="wrap_contact_us">
-        <a name="contact"></a>
+        <a id="contact"></a>
         <div class="container contact_content">
           <h2 class="wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="40">Keep in touch</h2>
           <p class="wow fadeInUp" data-wow-delay="0.7s" data-wow-offset="40">
@@ -950,7 +950,7 @@
         <form action="#">
             <input type="text" name="name" placeholder="Name">
             <input type="email" name="email" placeholder="Email">
-            <input type="phone" name="phone" placeholder="Phone Number">
+            <input type="number" name="phone" placeholder="Phone Number">
         </form>
         <button type="submit" class="modal_btn"><span>Join Us</span></button>
       </div>
