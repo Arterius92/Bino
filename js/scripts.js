@@ -25,7 +25,15 @@ $(function() {
     arrows: false,
     dots: true,
     vertical: true,
-    verticalSwiping: true
+    verticalSwiping: true,
+    responsive: [
+      {
+        breakpoint: 890,
+        settings: {
+          dots: false
+        }
+      }
+    ]
   });
 
   $('.work_item .item_img').fancybox({
@@ -167,12 +175,12 @@ $(function() {
     }
   });
 
-  new WOW().init();
-
   $('.read_more_btn').click(function() {
     $(this).toggleClass('open_btn');
     $(this).text($(this).text() == 'Read More ' ? 'Close ' : 'Read More ');
     $(this).parent('.card_text').toggleClass('opened');
     $(this).parent('.card_text').siblings('.card_image').toggleClass('closed');
   });
+
+  new WOW().init();
 });

@@ -1,8 +1,8 @@
-@import 'normalize';
-@import 'vars';
-@import 'slick-theme';
-@import 'slick';
-@import 'hamburger-menu';
+@import "_normalize.scss";
+@import "_slick-theme.scss";
+@import "_slick.scss";
+@import "_hamburger-menu.scss";
+@import "_vars.scss";
 
 *,
 *::before,
@@ -22,6 +22,7 @@ body {
   max-width: $width;
   margin: 0 auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
 }
 
 .container {
@@ -35,17 +36,19 @@ body {
 }
 
 .wrap_home {
+  height: 100vh;
   position: relative;
-  max-width: $width;
-  max-height: 990px;
-  margin: 0 auto;
   .home_slider {
-    max-width: 100%;
-    max-height: 990px;
-    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     .slick-list {
       z-index: -1;
-      .slider-track {
+      height: inherit;
+      .slick-track {
+        height: inherit;
         transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
       }
     }
@@ -84,6 +87,9 @@ body {
     }
     .slide {
       img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
         transform: scale(1.2);
       }
@@ -103,7 +109,6 @@ body {
     }
   }
   .home {
-    max-height: 990px;
     position: absolute;
     top: 0;
     left: 0;
@@ -195,7 +200,7 @@ body {
         line-height: 24px;
         color: $gray;
         max-width: 600px;
-        margin: 45px auto 68px;
+        margin: 0 auto 68px;
       }
       .home_btn {
         @include btn;
@@ -220,8 +225,6 @@ body {
 
 .wrap_about_us {
   position: relative;
-  max-width: $width;
-  margin: 0 auto;
   &:before {
     position: absolute;
     top: -119px;
@@ -230,7 +233,7 @@ body {
     width: 100%;
     height: 120px;
     background-image: linear-gradient(to top right, $white 49%, transparent 50%),
-      linear-gradient(to top left, $white 49%, transparent 50%);
+                      linear-gradient(to top left, $white 49%, transparent 50%);
     background-position: top left, top right;
     background-repeat: no-repeat;
     background-size: 50% 100%;
@@ -244,11 +247,10 @@ body {
   .about_us_content {
     padding-top: 115px;
     padding-bottom: 110px;
-    @include flex(space-between, center);
+    @include flex(space-between, flex-start);
     .item {
       position: relative;
       width: 280px;
-      height: 220px;
       text-align: center;
       margin: 0 5px;
       .icon_block {
@@ -417,6 +419,7 @@ body {
         width: 880px;
         height: 768px;
         border: none;
+        outline: none;
         img {
           width: 100%;
           height: 100%;
@@ -424,6 +427,7 @@ body {
         }
       }
       .slick-dots {
+        width: 60px;
         display: flex;
         flex-direction: column;
         bottom: calc(50% - 110px);
@@ -577,7 +581,7 @@ body {
       .text_block {
         margin: 0;
         z-index: 1;
-        padding-top: 80px;
+        padding: 80px 10px 10px;
         width: 665px;
         height: 630px;
         background-color: $white;
@@ -673,7 +677,6 @@ body {
   }
 
   .progress {
-    max-width: $width;
     min-height: 510px;
     position: relative;
     .bg_progress {
@@ -691,6 +694,7 @@ body {
       padding-top: 150px;
       color: $light-gray;
       .progress_item {
+        width: 145px;
         margin: 1%;
         .icon_block {
           width: 110px;
@@ -1496,5 +1500,3 @@ footer {
     color: $red;
   }
 }
-
-@import 'media';
